@@ -111,3 +111,74 @@ galleryList.addEventListener("click", (event) => {
     instance.show();
   }
 });
+
+//локальне сховище
+
+//console.log(window.localStorage);
+// Storage {length: 0}
+
+localStorage.setItem("ui-theme", "light");
+console.log(localStorage); // Storage {ui-theme: "light", length: 1}
+
+const settings = {
+  theme: "dark",
+  isAuthenticated: true,
+  options: [1, 2, 3],
+};
+
+localStorage.setItem("settings", JSON.stringify(settings));
+
+const savedTheme = localStorage.getItem("ui-theme");
+console.log(savedTheme); // "light"
+
+const savedSettings = localStorage.getItem("settings");
+console.log(savedSettings); // A string
+
+const parsedSettings = JSON.parse(savedSettings);
+console.log(parsedSettings); // Settings object
+
+//видалення даних---------------------------------
+
+/*localStorage.setItem("ui-theme", "dark"); //тут додаємо
+console.log(localStorage.getItem("ui-theme")); // "dark"
+
+localStorage.removeItem("ui-theme"); //тут видаляємо
+console.log(localStorage.getItem("ui-theme")); // null*/
+
+//повністю очистити-------------------------------
+
+/*localStorage.setItem("notif-level", "mute");
+
+console.log(localStorage);
+// Storage {notif-level: 'mute', ui-theme: 'light', length: 2}
+
+localStorage.clear(); //очистка
+console.log(localStorage); // Storage {length: 0}*/
+
+//сховище сесії-------------------------------
+
+console.log(window.sessionStorage); // Storage {length: 0}
+
+sessionStorage.setItem("user-id", "123");
+sessionStorage.setItem(
+  "tickets",
+  JSON.stringify({ from: "Lviv", to: "Kyiv", quantity: 2 })
+);
+console.log(sessionStorage);
+// Storage {user-id: '123', tickets: '{"from":"Lviv","to":"Kyiv","quantity":2}', length: 2}
+
+//так можна читати методом getItem(key)
+const userId = sessionStorage.getItem("user-id");
+console.log(userId); // "123"
+
+const tickets = JSON.parse(sessionStorage.getItem("tickets"));
+console.log(tickets); // { from: "Lviv", to: "Kyiv", quantity: 2 }
+
+//видаляти елементи за ключем і очищати сховище цілком методами
+//removeItem(key) і clear() відповідно.
+
+/*sessionStorage.removeItem("tickets");
+console.log(sessionStorage); // Storage {user-id: '123', length: 1}
+
+sessionStorage.clear();
+console.log(sessionStorage); // Storage {length: 0}*/
