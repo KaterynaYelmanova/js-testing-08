@@ -182,3 +182,22 @@ console.log(sessionStorage); // Storage {user-id: '123', length: 1}
 
 sessionStorage.clear();
 console.log(sessionStorage); // Storage {length: 0}*/
+
+//форма з повідомленням-------------------------------
+
+const form = document.querySelector(".feedback-form");
+const localStorageKey = "goit-example-message";
+const textarea = form.elements.message;
+
+textarea.value = localStorage.getItem(localStorageKey) ?? "";
+
+form.addEventListener("input", (evt) => {
+  localStorage.setItem(localStorageKey, evt.target.value);
+});
+
+form.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  console.log(evt.target.elements.message.value);
+  localStorage.removeItem(localStorageKey);
+  form.reset();
+});
